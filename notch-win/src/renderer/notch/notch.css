@@ -248,8 +248,8 @@ html, body {
 
 /* ---- Media island — single expanded state: MINI PLAYER ----
    370×150, r36. Row1: art 56 r13 | title 12.5/600 + artist 10 @55% | 5 bars.
-   Row2: times 9px + 4px track (15% white / 65% fill). Row3: prev/play/next,
-   16px icons, 26px hits. Outer margins 30px; inner gaps tight. */
+   Row2: times 9px + 4px track (11% white / 88% fill). Row3: prev/play/next
+   20px icons in 26px hits. Outer margins 40px; inner gaps tight. */
 #music-compact {
   display: none;
   flex: 1 1 auto;
@@ -259,7 +259,6 @@ html, body {
   min-height: 0;
 }
 #open-content.compact #music-compact { display: flex; }
-#open-content.compact #header { display: none; }
 #open-content.compact #home { display: none; }
 
 #cmp-row1 { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
@@ -273,7 +272,6 @@ html, body {
   background: #1c1c1e;
 }
 #cmp-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; }
-#cmp-art { outline: 1px solid rgba(255, 255, 255, 0.09); outline-offset: -1px; }
 #cmp-art-note { position: absolute; inset: 17px; }
 #cmp-copy {
   flex: 1 1 auto;
@@ -375,85 +373,6 @@ html, body {
 #cmp-icon-pause { opacity: 0; }
 #cmp-btn-play.playing #cmp-icon-play { opacity: 0; }
 #cmp-btn-play.playing #cmp-icon-pause { opacity: 1; }
-
-/* ---- Closed pill, music at rest (boring demo .tb-collapsed structure) ----
-   Described pill 260×32: [7][art 20 r4][8][Title — Artist, 11px, flex][8]
-   [eq 5 bars 2px][12]. Paused (within grace): bars dim. */
-#mc-title {
-  flex: 1 1 auto;
-  min-width: 0;
-  font-size: 11px;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#mc-title .mc-artist { color: rgba(255, 255, 255, 0.55); }
-.marquee { overflow: hidden; white-space: nowrap; display: block; min-width: 0; }
-.marquee-inner { display: inline-flex; gap: 20px; width: max-content; will-change: transform; }
-@keyframes marquee-scroll {
-  to { transform: translateX(var(--marquee-offset, -100%)); }
-}
-
-#music-closed { display: none; height: 100%; align-items: center; gap: 8px; padding: 0 13px 0 12px; }
-#music-closed.visible { display: flex; }
-#mc-art {
-  flex: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: #2c2c2e;
-}
-#mc-art img { width: 100%; height: 100%; object-fit: cover; display: none; }
-#mc-art-note { width: 100%; height: 100%; }
-
-#mc-spectrum {
-  flex: none;
-  width: 18px;
-  height: 12px;
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  --bar-color: #8e8e93;
-}
-#mc-spectrum .bar {
-  width: 2px;
-  height: 14px;
-  border-radius: 1px;
-  background: var(--bar-color);
-  transform: scaleY(0.35);
-  transform-origin: center;
-}
-#music-closed.paused #mc-spectrum .bar { background: #4a4a4f; }
-
-/* Sneak peek: gray marquee under the pill (ContentView.swift:324-336) */
-#sneak-peek {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  display: none;
-  align-items: center;
-  gap: 6px;
-  color: #8e8e93;
-  font-size: 12pt;
-  padding: 2px 0 10px 0;
-}
-#sneak-peek.visible { display: flex; }
-#sneak-peek .mini-icon { width: 13px; height: 13px; fill: #8e8e93; flex: none; }
-#sneak-text { flex: 1 1 auto; min-width: 0; }
-
-/* Source does not support SMTC seeking (e.g. Apple Music Win): dimmed,
-   non-interactive bar — the UI must not promise what the app ignores. */
-#cmp-track.noseek, #slider-track.noseek { cursor: default; }
-#cmp-track.noseek::before { opacity: 0.5; }
-#cmp-track.noseek #cmp-fill { opacity: 0.45; }
-#slider-track.noseek::before { opacity: 0.5; }
-#slider-track.noseek #slider-fill { opacity: 0.45; }
-
-/* Fullscreen / maximized hiding: the closed pill fades out (hideOnClosed). */
-body.hidden-notch #notch { opacity: 0 !important; transition-property: opacity; transition-duration: 400ms; }
 
 /* ---- Shelf (slice 4) — tabs, grid, drop hint ---- */
 #shelf-tabs { display: flex; gap: 4px; }
