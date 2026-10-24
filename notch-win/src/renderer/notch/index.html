@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: file: https:;" />
+  <title>notch.win</title>
+  <link rel="stylesheet" href="notch.css" />
+</head>
+<body>
+  <!-- The notch: width/height/radii are driven frame-by-frame by the spring engine. -->
+  <div id="notch">
+    <svg id="notch-svg" width="185" height="32">
+      <path id="notch-path" d="" fill="#000" />
+      <rect id="top-rect" x="6" y="0" height="1" fill="#000" />
+    </svg>
+
+    <div id="closed-content">
+      <!-- Music live activity (ContentView.swift:389-487): art + gap + spectrum.
+           Inline expansion (macOS boring.notch): the gap widens to 380 and
+           shows title marquee (tinted) + artist while the pill stays 32px tall. -->
+      <div id="music-closed">
+        <div id="mc-art">
+          <img id="mc-art-img" alt="" />
+          <svg id="mc-art-note" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z" fill="#8e8e93"/></svg>
+        </div>
+        <div id="mc-title"></div>
+        <div id="mc-spectrum">
+          <i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i>
+        </div>
+      </div>
+      <!-- Sneak peek on track change: marquee "title - artist", gray (ContentView.swift:324-336) -->
+      <div id="sneak-peek">
+        <svg viewBox="0 0 24 24" class="mini-icon"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z"/></svg>
+        <div id="sneak-text" class="marquee"></div>
+      </div>
+    </div>
+
+    <div id="open-content">
+      <header id="header">
+        <div class="header-left"></div>
+        <div class="header-right">
+          <button id="btn-settings" class="capsule-btn" title="Settings">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path data-icon="gear" fill-rule="evenodd"/>
+            </svg>
+          </button>
+
+        </div>
+      </header>
+
+
+      <!-- Compact media panel — Apple Dynamic Island expanded media view
+           (371×160pt): art 100 r16 inset 14 left, title/artist stacked
+           left-aligned and vertically centered, 5-bar equalizer right.
+           Clean view: no slider, no transport (tap opens the full player). -->
+      <div id="music-compact">
+        <div id="cmp-row1">
+          <div id="cmp-art">
+            <img id="cmp-art-img" alt="" />
+            <svg id="cmp-art-note" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z" fill="#8e8e93"/></svg>
+          </div>
+          <div id="cmp-copy">
+            <div id="cmp-title"></div>
+            <div id="cmp-artist"></div>
+          </div>
+          <div id="cmp-spectrum">
+            <i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i>
+          </div>
+        </div>
+        <div id="cmp-progress">
+          <span id="cmp-current" class="cmp-t">0:00</span>
+          <div id="cmp-track"><div id="cmp-fill"></div></div>
+          <span id="cmp-duration" class="cmp-t">0:00</span>
+        </div>
+        <div id="cmp-controls">
+          <span class="cmp-ctl-spacer"></span>
+          <span class="cmp-ctl" data-cmd="previous" role="button">
+            <svg viewBox="0 0 24 24" class="icon"><path data-icon="prev"/></svg>
+          </span>
+          <span class="cmp-ctl play" id="cmp-btn-play" data-cmd="togglePlay" role="button">
+            <svg id="cmp-icon-play" viewBox="0 0 24 24" class="icon"><path data-icon="play"/></svg>
+            <svg id="cmp-icon-pause" viewBox="0 0 24 24" class="icon"><path data-icon="pause"/></svg>
+          </span>
+          <span class="cmp-ctl" data-cmd="next" role="button">
+            <svg viewBox="0 0 24 24" class="icon"><path data-icon="next"/></svg>
+          </span>
+          <span class="cmp-ctl-spacer"></span>
+        </div>
+      </div>
+
+      <div id="home">
+        <div id="player">
+          <div id="album-art-wrap">
+            <div id="art-halo"></div>
+            <div id="album-art">
+              <img id="album-art-img" alt="" />
+              <svg id="art-note" viewBox="0 0 24 24" class="note-icon">
+                <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z"/>
+              </svg>
+              <div id="art-dark-overlay"></div>
+            </div>
+          </div>
+          <div id="player-info">
+            <div id="song-block">
+              <div id="song-title-marquee" class="headline marquee"></div>
+              <div id="song-artist-marquee" class="headline medium marquee"></div>
+            </div>
+            <div id="slider-block">
+              <div id="slider-track"><div id="slider-fill"></div></div>
+              <div id="slider-times"><span id="time-elapsed">0:00</span><span id="time-total">0:00</span></div>
+            </div>
+            <div id="controls">
+              <span class="ctrl-spacer"></span>
+              <button class="ctrl-btn" data-cmd="previous">
+                <svg viewBox="0 0 24 24" class="icon"><path data-icon="prev"/></svg>
+              </button>
+              <button class="ctrl-btn large" id="btn-play" data-cmd="togglePlay">
+                <svg id="icon-play" viewBox="0 0 24 24" class="icon"><path data-icon="play"/></svg>
+                <svg id="icon-pause" viewBox="0 0 24 24" class="icon"><path data-icon="pause"/></svg>
+              </button>
+              <button class="ctrl-btn" data-cmd="next">
+                <svg viewBox="0 0 24 24" class="icon"><path data-icon="next"/></svg>
+              </button>
+              <span class="ctrl-spacer"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
