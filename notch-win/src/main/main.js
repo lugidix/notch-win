@@ -4,7 +4,6 @@ import { ConfigStore } from "./config-store.js";
 import { registerNotchIpc } from "./ipc.js";
 import { startSmtcBridge } from "./pollers/smtc.js";
 import { startJsonPoller } from "./pollers/generic.js";
-import { registerShelfIpc } from "./shelf-store.js";
 
 // Artwork fallback: several SMTC sources (e.g. Apple Music Windows) expose no
 // thumbnail. Fetch the cover from the public iTunes Search API in the main
@@ -112,9 +111,6 @@ app.whenReady().then(() => {
     console.log(`[cmd] ${cmd}${arg !== undefined ? ` ${arg}` : ""}`);
     bridge.send(cmd, arg);
   });
-
-  // Shelf persistence (drag & drop items, slice 4)
-  registerShelfIpc();
 
   // Fullscreen detection poller (hides the closed notch while an app is
   // fullscreen — hideNotchOption: nowPlayingOnly default).
