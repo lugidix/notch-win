@@ -1,0 +1,8 @@
+# reference repos (research only, not ours to publish)
+reference/
+
+# deps & artifacts
+node_modules/
+tests/artifacts/
+*.log
+dist/
