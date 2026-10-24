@@ -1,0 +1,17 @@
+{
+  "name": "notch-win",
+  "productName": "notch.win",
+  "version": "0.1.0",
+  "description": "Dynamic Island (boring.notch) faithfully ported to Windows",
+  "main": "src/main/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "vitest": "^2.1.0"
+  }
+}
