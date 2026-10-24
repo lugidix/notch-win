@@ -3,6 +3,7 @@
 import { SpringGroup } from "./spring-engine.js";
 import { applyIcons } from "./icons.js";
 import { createMusicController } from "./music.js";
+import { createShelfController } from "./shelf.js";
 import { notchPath, RADIUS } from "../../../shared/notch-shape.js";
 import { NotchStore } from "../../../shared/notch-store.js";
 import {
@@ -262,6 +263,12 @@ setPassThrough(true);
 
 // SF Symbols-style transport controls / gear.
 applyIcons();
+
+// ---- Shelf (slice 4): tabs + drop grid ------------------------------------
+const shelf = createShelfController({ store, api: window.notchApi });
+shelf.onSwitchView((view) => {
+  els.openContent.classList.toggle("shelf", view === "shelf");
+});
 
 // ---- Music (slice 2): SMTC playback → notch UI ----------------------------
 const music = createMusicController({ store, config, api: window.notchApi });

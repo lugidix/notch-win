@@ -16,6 +16,12 @@ const api = {
   onCursorInside: (cb) => ipcRenderer.on("cursor-inside", (_e, inside) => cb(inside)),
   onHotkey: (cb) => ipcRenderer.on("hotkey", (_e, key) => cb(key)),
   onFullscreen: (cb) => ipcRenderer.on("fullscreen", (_e, state) => cb(state)),
+  // Shelf (slice 4)
+  getShelf: () => ipcRenderer.invoke("get-shelf"),
+  setShelf: (items) => ipcRenderer.send("set-shelf", items),
+  openItem: (item) => ipcRenderer.send("open-item", item),
+  revealItem: (item) => ipcRenderer.send("reveal-item", item),
+  copyItemPath: (item) => ipcRenderer.send("copy-item-path", item),
 };
 
 contextBridge.exposeInMainWorld("notchApi", api);
